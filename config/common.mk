@@ -177,6 +177,10 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
+# Parallel Space
+PRODUCT_PACKAGES += \
+    ParallelSpace
+
 # SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
