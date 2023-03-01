@@ -223,6 +223,10 @@ else
     PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
+# Lineage Health
+PRODUCT_COPY_FILES += \
+    vendor/halcyon/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
+
 # Include Google Apps Bundle
 $(call inherit-product-if-exists, vendor/gms/products/gms.mk)
 
