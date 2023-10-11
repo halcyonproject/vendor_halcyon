@@ -143,6 +143,10 @@
        <item>app_cloning/cloned_apps_enabled=true</item>
        <item>app_cloning/delete_all_app_clones_enabled=true</item>
        <item>app_cloning/enable_app_cloning_building_blocks=true</item>
+
+       <!-- For SeedVault Backup -->
+       <item>backup_and_restore/backup_transport_future_timeout_millis=900000</item>
+       <item>backup_and_restore/backup_transport_callback_timeout_millis=900000</item>
     </string-array>
 
 </resources>
