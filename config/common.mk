@@ -194,6 +194,7 @@ PRODUCT_PACKAGES += \
 # Apps
 PRODUCT_PACKAGES += \
     Aperture \
+    ParallelSpace
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
