@@ -63,6 +63,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 endif
 endif
 
+# Cloned app exemption
+PRODUCT_COPY_FILES += \
+    vendor/halcyon/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-halcyon-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-halcyon-product.xml
+
 # Lineage interfaces
 PRODUCT_PACKAGES += \
     framework_compatibility_matrix.lineage.xml
