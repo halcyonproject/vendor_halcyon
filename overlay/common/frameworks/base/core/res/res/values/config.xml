@@ -151,4 +151,16 @@
 
     <!-- Name of the font family to use in the default lockscreen clock -->
     <string name="config_clockFontFamily" translatable="false" />
+
+    <!-- Build properties from a GMS certified device -->
+    <string-array name="config_certifiedBuildProperties" translatable="false">
+        <item>sailfish</item> <!-- Build.PRODUCT -->
+        <item>sailfish</item> <!-- Build.DEVICE -->
+        <item>Google</item> <!-- Build.MANUFACTURER -->
+        <item>google</item> <!-- Build.BRAND -->
+        <item>Pixel</item> <!-- Build.MODEL -->
+        <item>google/sailfish/sailfish:8.1.0/OPM1.171019.011/4448085:user/release-keys</item> <!-- Build.FINGERPRINT -->
+        <item>2017-12-05</item> <!-- Build.SECURITY_PATCH -->
+        <item>OPM1.171019.011</item> <!-- Build.ID -->
+    </string-array>
 </resources>
