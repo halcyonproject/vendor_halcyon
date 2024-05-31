@@ -171,8 +171,8 @@ else
         $(error "NO KERNEL CONFIG")
     else
         ifneq ($(TARGET_FORCE_PREBUILT_KERNEL),)
-            ifneq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LINEAGE_BUILDTYPE)),)
-                $(error "PREBUILT KERNEL IS NOT ALLOWED ON OFFICIAL BUILDS!")
+            ifneq ($(filter Enchanted,$(HALCYON_BUILD_TYPE)),)
+                $(error "PREBUILT KERNEL IS NOT ALLOWED ON ENCHANTED BUILDS!")
             else
                 $(warning **********************************************************)
                 $(warning * Kernel source found and configuration was defined,     *)
