@@ -141,6 +141,14 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.android.mobiledata=false
 
+# Spoofing first api level to 32
+SOONG_CONFIG_NAMESPACES += halcyonGlobalVars
+SOONG_CONFIG_halcyonGlobalVars += \
+    spoof_first_api_level_32
+
+# Soong bool variables
+SOONG_CONFIG_halcyonGlobalVars_spoof_first_api_level_32 := $(SPOOF_FIRST_API_LEVEL_32)
+
 include vendor/halcyon/config/packages.mk
 
 include vendor/halcyon/config/version.mk
