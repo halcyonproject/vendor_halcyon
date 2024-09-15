@@ -233,7 +233,7 @@ PRODUCT_COPY_FILES += \
 
 # Include Google Apps Bundle
 ifneq ($(DISABLE_GMS),true)
-    $(call inherit-product-if-exists, vendor/gms/products/gms.mk)
+    $(call inherit-product-if-exists, vendor/gms/config.mk)
 endif
 
 include vendor/halcyon/config/version.mk
