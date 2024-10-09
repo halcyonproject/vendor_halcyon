@@ -24,4 +24,9 @@
     <!-- Whether wallpaper attribution should be shown or not. -->
     <bool name="config_show_wallpaper_attribution">false</bool>
 
+    <!-- Sound picker package name -->
+    <string name="config_sound_picker_package_name" translatable="false">
+        com.android.soundpicker
+    </string>
+
 </resources>
