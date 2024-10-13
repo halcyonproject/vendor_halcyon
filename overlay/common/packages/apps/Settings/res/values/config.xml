@@ -26,7 +26,7 @@
 
     <!-- Sound picker package name -->
     <string name="config_sound_picker_package_name" translatable="false">
-        com.android.soundpicker
+        com.google.android.soundpicker
     </string>
-
+    
 </resources>
