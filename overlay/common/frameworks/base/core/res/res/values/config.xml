@@ -149,18 +149,6 @@
     <!-- Name of the font family to use in the default lockscreen clock -->
     <string name="config_clockFontFamily" translatable="false" />
 
-    <!-- Build properties from a GMS certified device -->
-    <string-array name="config_certifiedBuildProperties" translatable="false">
-        <item>oriole_beta</item> <!-- Build.PRODUCT -->
-        <item>oriole</item> <!-- Build.DEVICE -->
-        <item>Google</item> <!-- Build.MANUFACTURER -->
-        <item>google</item> <!-- Build.BRAND -->
-        <item>Pixel 6</item> <!-- Build.MODEL -->
-        <item>google/oriole_beta/oriole:16/BP22.250221.015/13278879:user/release-keys</item> <!-- Build.FINGERPRINT -->
-        <item>2025-03-05</item> <!-- Build.SECURITY_PATCH -->
-        <item>BP22.250221.015</item> <!-- Build.ID -->
-    </string-array>
-
     <!-- Define device configs on boot -->
     <string-array name="global_device_configs_override">
         <!-- Machine learning back gesture (requires TensorFlow model) -->
