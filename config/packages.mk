@@ -42,6 +42,10 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 PRODUCT_COPY_FILES += \
     vendor/halcyon/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
 
+# GameSpace
+PRODUCT_PACKAGES += \
+    GameSpace
+
 # LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/halcyon/overlay/dictionaries
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/halcyon/overlay/dictionaries
