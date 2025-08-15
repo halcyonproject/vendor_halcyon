@@ -159,3 +159,6 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 # TouchGestures
 PRODUCT_PACKAGES += \
     TouchGestures
+
+# Include GMS If exist
+$(call inherit-product-if-exists, vendor/gms/config.mk)
