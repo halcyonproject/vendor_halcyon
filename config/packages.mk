@@ -142,6 +142,13 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     SetupWizard
 
+ifneq ($(WITH_GMS),true)
+    PRODUCT_PACKAGES += \
+        Etar \
+        ExactCalculator \
+        Glimpse
+endif
+
 # Telephony packages
 PRODUCT_PACKAGES += \
     messaging \
@@ -165,4 +172,6 @@ PRODUCT_PACKAGES += \
     TouchGestures
 
 # Include GMS If exist
-$(call inherit-product-if-exists, vendor/gms/config.mk)
+ifeq ($(WITH_GMS),true)
+    $(call inherit-product-if-exists, vendor/gms/config.mk)
+endif
