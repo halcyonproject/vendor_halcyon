@@ -1,3 +1,5 @@
+WITH_GMS ?= false
+
 # APN list
 PRODUCT_PACKAGES += \
     apns-conf.xml
