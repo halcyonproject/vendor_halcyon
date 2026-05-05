@@ -11,3 +11,13 @@ prebuilt_etc_xml {
     src: "etc/halcyon-component-overrides.xml",
     sub_dir: "sysconfig",
 }
+
+android_app_import {
+	name: "Flipendo",
+	apk: "app/Flipendo/Flipendo.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	system_ext_specific: true,
+}
