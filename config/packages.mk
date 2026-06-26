@@ -66,6 +66,12 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/priv-app/FaceUnlock/FaceUnlock.apk
 endif
 
+# fastbootd
+ifneq ($(TARGET_DISABLE_FASTBOOTD),true)
+PRODUCT_PACKAGES += \
+    fastbootd
+endif
+
 # FRP
 PRODUCT_COPY_FILES += \
     vendor/halcyon/prebuilt/common/bin/wipe-frp.sh:$(TARGET_COPY_OUT_RECOVERY)/root/system/bin/wipe-frp
