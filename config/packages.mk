@@ -114,6 +114,10 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/procmem
 endif
 
+# Rewind
+PRODUCT_PACKAGES += \
+    Rewind
+
 # Root
 PRODUCT_PACKAGES += \
     adb_root
