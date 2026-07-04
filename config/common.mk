@@ -6,8 +6,9 @@ $(call inherit-product-if-exists, external/google-fonts/google-sans-flex/fonts.m
 $(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
 $(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 
-# Exclude kernel platform repos from bp scanning
+# Exclude repos from bp scanning
 PRODUCT_SOURCE_ROOT_DIRS += -kernel/platform
+PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
 
 PRODUCT_BRAND ?= Halcyon
 
