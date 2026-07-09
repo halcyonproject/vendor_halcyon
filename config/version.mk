@@ -31,7 +31,7 @@ else
 endif
 
 # Halcyon Build information properties
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
    ro.halcyon.device=$(HALCYON_BUILD) \
    ro.halcyon.version=$(HALCYON_VERSION_NUMBER) \
    ro.halcyon.build.version=$(HALCYON_BUILD_VERSION) \

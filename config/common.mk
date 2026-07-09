@@ -120,7 +120,7 @@ SYSTEMUI_OPTIMIZE_JAVA ?= true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Media
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
 ifneq ($(TARGET_DISABLE_EPPE),true)
@@ -134,7 +134,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Tethering - allow without requiring a provisioning app
 # (for devices that check this)
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
 # Disable mobile data by default
