@@ -424,13 +424,18 @@ define build-image-kernel-modules-halcyon
         exit 1; \
     fi; \
     if [ -n "$(7)" ]; then \
-        echo lib/modules$(6)/modules.alias >> "$(7)"; \
-        echo lib/modules$(6)/modules.dep >> "$(7)"; \
-        if [ ! -z "$(5)" ]; then echo lib/modules$(6)/modules.load >> "$(7)"; fi; \
-        echo lib/modules$(6)/modules.softdep >> "$(7)"; \
+        partition_root="$(2)"; \
+        if [ "$(7)" = "$(systemimage_intermediates)/file_list.txt" ]; then \
+            partition_root="$(TARGET_OUT)"; \
+        fi; \
+        modules_dir=$$(realpath -m --relative-to="$$partition_root" "$(2)/lib/modules$(6)"); \
+        echo "$$modules_dir/modules.alias" >> "$(7)"; \
+        echo "$$modules_dir/modules.dep" >> "$(7)"; \
+        if [ ! -z "$(5)" ]; then echo "$$modules_dir/modules.load" >> "$(7)"; fi; \
+        echo "$$modules_dir/modules.softdep" >> "$(7)"; \
         for MODULE in $(1); do \
             BASENAME=$$(basename $$MODULE); \
-            echo lib/modules$(6)/"$$BASENAME" >> "$(7)"; \
+            echo "$$modules_dir/$$BASENAME" >> "$(7)"; \
         done; \
         sort -u "$(7)" -o "$(7)"; \
     fi;
@@ -466,10 +471,11 @@ KERNEL_DEPMOD_STAGING_DIR := $(KERNEL_BUILD_OUT_PREFIX)$(call intermediates-dir-
 KERNEL_MODULE_MOUNTPOINT := vendor
 ifneq ($(BUILDING_VENDOR_IMAGE),)
 KERNEL_MODULES_PARTITION_FILE_LIST := $(vendorimage_intermediates)/file_list.txt
+$(INSTALLED_VENDORIMAGE_TARGET): $(TARGET_PREBUILT_INT_KERNEL)
 else # No vendor partition
 KERNEL_MODULES_PARTITION_FILE_LIST := $(systemimage_intermediates)/file_list.txt
+$(INSTALLED_SYSTEMIMAGE_TARGET): $(TARGET_PREBUILT_INT_KERNEL)
 endif # BUILDING_VENDOR_IMAGE
-$(INSTALLED_VENDORIMAGE_TARGET): $(TARGET_PREBUILT_INT_KERNEL)
 endif
 ifeq ($(BOARD_USES_SYSTEM_DLKMIMAGE),true)
 SYSTEM_KERNEL_MODULES_OUT := $(TARGET_OUT_SYSTEM_DLKM)
