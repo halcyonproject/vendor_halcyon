@@ -116,4 +116,9 @@
         <install-in user-type="PROFILE" />
         <do-not-install-in user-type="android.os.usertype.profile.CLONE" />
     </install-in-user-type>
+    <install-in-user-type package="org.hlcyn.updater">
+        <install-in user-type="FULL" />
+        <install-in user-type="PROFILE" />
+        <do-not-install-in user-type="android.os.usertype.profile.CLONE" />
+    </install-in-user-type>
 </config>

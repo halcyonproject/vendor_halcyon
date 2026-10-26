@@ -176,6 +176,10 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 PRODUCT_PACKAGES += \
     TouchGestures
 
+# Updater
+PRODUCT_PACKAGES += \
+    Updater
+
 # Include GMS If exist
 ifeq ($(WITH_GMS),true)
     $(call inherit-product-if-exists, vendor/gms/config.mk)
