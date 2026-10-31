@@ -19,7 +19,7 @@ HALCYON_HOST_TIME := $(shell date +"%Y%m%d-%H%M")
 
 HALCYON_BUILD_TYPE ?= Beta
 
-HALCYON_VERSION := Calla
+HALCYON_VERSION := CallaLily
 HALCYON_VERSION_NUMBER := 17.0
 
 ifeq ($(WITH_GMS),true)

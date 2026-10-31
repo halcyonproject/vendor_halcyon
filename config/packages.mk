@@ -2,6 +2,10 @@
 PRODUCT_PACKAGES += \
     apns-conf.xml
 
+# Browser
+PRODUCT_PACKAGES += \
+    Kilas
+
 # Binaries
 PRODUCT_PACKAGES += \
     bash \
