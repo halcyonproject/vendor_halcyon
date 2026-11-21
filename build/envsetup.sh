@@ -515,11 +515,11 @@ function build_kernel() {
         echo "Skipping kernel build"
         return
     fi
-    local lineage_version=$(grep -A3 'name="lineage"' "${ANDROID_BUILD_TOP}/.repo/manifests/xml/halcyon.xml" | grep 'revision=' | sed -E 's/.*revision="([^"]+)".*/\1/')
 
     local target_kernel_device="$(_get_build_var_cached TARGET_KERNEL_DEVICE)"
     local target_kernel_dir="${ANDROID_BUILD_TOP}/$(_get_build_var_cached TARGET_KERNEL_DIR)"
     local target_kernel_source="$(_get_build_var_cached TARGET_KERNEL_PLATFORM_SOURCE)"
+    local target_kernel_manifest_branch="$(_get_build_var_cached TARGET_KERNEL_MANIFEST_BRANCH)"
 
     local KERNEL_BUILD_TOP="${ANDROID_BUILD_TOP}/out-kernel/${target_kernel_source}"
 
@@ -555,16 +555,47 @@ function build_kernel() {
     pushd "${KERNEL_BUILD_TOP}" > /dev/null
     if [[ "${SKIP_KERNEL_SYNC}" != "true" && "${SKIP_KERNEL_SYNC}" != "1" ]]; then
         echo "Syncing ${KERNEL_BUILD_TOP}"
-        local target_kernel_manifest=$(echo android_kernel_${target_kernel_source}_manifest | tr / _)
-        local repo_init_args=("-b" "${lineage_version}")
-        if [ -n "${LINEAGE_MIRROR}" ]; then
-            repo_init_args+=("--reference" "${LINEAGE_MIRROR}")
+
+        local sanitized_source=$(echo "${target_kernel_source}" | tr / _)
+        local halcyon_manifest_url="https://github.com/halcyonlv/kernel_${sanitized_source}_manifest.git"
+        local lineage_manifest_url="https://github.com/LineageOS/android_kernel_${sanitized_source}_manifest.git"
+
+        local halcyon_version=$(grep -A3 'name="halcyon"' "${ANDROID_BUILD_TOP}/.repo/manifests/xml/halcyon.xml" 2>/dev/null | grep 'revision=' | sed -E 's/.*revision="([^"]+)".*/\1/')
+        halcyon_version="${halcyon_version:-17.0}"
+
+        local lineage_version=$(grep -A3 'name="lineage"' "${ANDROID_BUILD_TOP}/.repo/manifests/xml/halcyon.xml" 2>/dev/null | grep 'revision=' | sed -E 's/.*revision="([^"]+)".*/\1/')
+        lineage_version="${lineage_version:-lineage-24.0}"
+
+        local manifest_url=""
+        local manifest_branch=""
+
+        # Check halcyonlv first; fall back to LineageOS if not available
+        echo "Checking kernel manifest source for ${sanitized_source}..."
+        if GIT_TERMINAL_PROMPT=0 git ls-remote --exit-code -h "${halcyon_manifest_url}" > /dev/null 2>&1; then
+            echo "Using halcyonlv kernel manifest (kernel_${sanitized_source}_manifest)"
+            manifest_url="${halcyon_manifest_url}"
+            manifest_branch="${halcyon_version}"
+        else
+            echo "Using LineageOS kernel manifest (android_kernel_${sanitized_source}_manifest)"
+            manifest_url="${lineage_manifest_url}"
+            manifest_branch="${lineage_version}"
+        fi
+
+        if [ -n "${target_kernel_manifest_branch}" ]; then
+            manifest_branch="${target_kernel_manifest_branch}"
+        fi
+
+        local repo_init_args=("-b" "${manifest_branch}")
+        local kernel_mirror="${KERNEL_MANIFEST_MIRROR:-${LINEAGE_MIRROR}}"
+        if [ -n "${kernel_mirror}" ]; then
+            repo_init_args+=("--reference" "${kernel_mirror}")
         fi
         if [ -n "${REPO_VERSION}" ]; then
             repo_init_args+=("--repo-rev" "${REPO_VERSION}")
         fi
 
-        yes | repo init -u https://github.com/LineageOS/${target_kernel_manifest}.git ${repo_init_args[@]} || [ $? -eq 141 ]
+        echo "Initializing kernel manifest from ${manifest_url} (${manifest_branch})"
+        yes | repo init -u "${manifest_url}" ${repo_init_args[@]} || [ $? -eq 141 ]
         if [ $? -ne 0 ]; then
             echo "Kernel source repo init failed"
             popd > /dev/null
