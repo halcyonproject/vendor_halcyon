@@ -133,6 +133,10 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 endif
 endif
 
+# Seedvault
+PRODUCT_PACKAGES_DEBUG += \
+    Seedvault
+
 # Sensitive Phone Numbers list
 PRODUCT_PACKAGES += \
     sensitive_pn.xml
